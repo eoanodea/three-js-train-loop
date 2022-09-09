@@ -2,7 +2,7 @@ import Experience from "./Experience.js";
 
 import * as THREE from "three";
 
-const speed = 0.1;
+const speed = 0.07;
 
 export default class CargoTrain {
   constructor() {
@@ -29,12 +29,20 @@ export default class CargoTrain {
 
     this.model.group = new THREE.Group();
 
-    let rotation = [0, 1.6, 0];
+    let rotation = [0, Math.PI / 2, 0];
     this.model.group.rotation.set(...rotation);
     this.model.group.scale.set(scale, scale, scale);
-    this.model.group.position.set(0, 0.16, -10);
+    this.model.group.position.set(0, 0.16, 0);
+
+    const localPlane = new THREE.Plane(new THREE.Vector3(5, 5, 5), 0.8);
 
     this.resources.items.cargoTrainModel.scene.children.forEach((item) => {
+      let currentItem = item;
+      if (currentItem.material) {
+        currentItem.material.clippingPlanes = [localPlane];
+      }
+      // currentItem.material.clippingPlanes = [localPlane];
+
       this.model.group.add(item);
     });
 

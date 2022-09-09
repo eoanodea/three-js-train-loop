@@ -27,8 +27,8 @@ export default class TrainTrack {
     const scale = 0.4;
 
     this.model.group = new THREE.Group();
-    console.log(this.resources.items.trainTrackModel.scene.children);
-    let rotation = [0, 1.6, 0];
+
+    let rotation = [0, Math.PI / 2, 0];
     this.model.group.rotation.set(...rotation);
     this.model.group.scale.set(scale, scale, scale);
     this.model.group.position.set(...this.position);

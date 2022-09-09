@@ -21,6 +21,9 @@ export default class World {
   }
 
   setDummy() {
+    const gridHelper = new THREE.GridHelper(10, 10);
+    this.scene.add(gridHelper);
+
     const light = new THREE.AmbientLight(0xffffff); // soft white light
     this.scene.add(light);
 
@@ -69,13 +72,12 @@ export default class World {
   }
 
   TrainTrack() {
-    this.trainTrack = new TrainTrack([-0.15, 0.14, -3.5]);
+    this.trainTrack = new TrainTrack([0, 0.14, -3.5]);
   }
 
   resize() {}
 
   update() {
-    console.log(this.cargoTrain);
     if (this.cargoTrain) this.cargoTrain.update();
   }
 
